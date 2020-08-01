@@ -1,0 +1,182 @@
+Survey Admin Module
+===================
+
+Tasks
+=====
+
+1.  Login
+        login.jsp  -> home.jsp
+        LoginBean.java
+        UserDAO.java  
+                 login(uname,password)
+                 
+                 
+2.  Add topic
+       addtopic.jsp
+       Topic.add()
+       TopicDAO.add(uname,title)
+       
+3.  Add Question
+       addquestion.jsp
+       Question.java
+               add()
+               TopicDAO.addQuestion(Question)
+       
+4.  List topics
+       listtopics.jsp
+       Topic.getTopics()
+       ArrayList<Topic> TopicsDAO.getTopics()
+       
+5.  List questions by topic
+        topicquestions.jsp
+        Topic.getQuestions()
+            ArrayList<Question> TopicDAO.getQuestions(topicid)
+          
+6.  Delete topic
+       deletetopic.jsp?topicid=
+       TopicDAO.delete(topicid)
+       
+7.  Delete question
+         deletequestion.jsp?questionid=
+         TopicDAO.deleteQuestion(questionid)
+         
+8.  Getting statistics 
+         surveyresults.jsp
+         List<SurveyResult> Topic.getSurveyResults()
+         List<SurveyResult> TopicDAO.getSurveyResults(topicid);
+9.  Logout
+       logout.jsp
+       
+
+
+Database Structure
+==================
+
+create user survey identified by survey;
+grant connect, resource to survey;
+connect survey/survey;
+
+Users
+----
+uname
+password 
+
+create table users
+( uname varchar2(10) primary key,
+  password varchar2(10) 
+);
+
+insert into users values('abc','abc');
+insert into users values('def','d');
+
+Topics
+-------
+TopicId   PK
+TopicTitle 
+AddedOn
+uname    -  FK  ( Users) 
+
+create table topics
+( topicid number(5) primary key,
+  topictitle varchar2(50),
+  addedon  date default sysdate,
+  uname    varchar2(10) references users(uname)
+);
+
+
+insert into topics values(1001,'Programming Languages',sysdate,'abc');
+insert into topics values(1002,'Web Frameworks',sysdate,'abc');
+
+
+create sequence topicid_sequence nocache;
+
+Questions
+---------
+QuestionId  Pk
+QuestionText  
+opt1
+opt2
+opt3
+TopicId   PK
+
+create table questions
+(questionid number(5) primary key,
+ questiontext varchar2(200) not null,
+ opt1  varchar2(50) not null,
+ opt2 varchar2(50) not null,
+ opt3 varchar2(50) not null,
+ topicid number(5) references topics(topicid)
+);
+
+create sequence questionid_sequence nocache;
+
+insert into questions values(2000,'What is your fav. dynamic Language','Javascript','Ruby','Python',1001);
+insert into questions values(2001,'What is your primary tool for writing code?','IDE','Text Editor','Both',1001);
+
+
+insert into questions values(2002,'Which MVC framework do you use?','JSF','Struts','Spring',1002);
+insert into questions values(2003,'Which Javascript library do you use?','JQuery','GWT','Others',1002);
+
+
+
+Answers_master
+--------------
+surveyid  -  PK
+topicid  - fk
+takenon 
+
+create table answers_master
+(  surveyid number(5) primary key,
+   topicid  number(5) references topics(topicid) on delete cascade,
+   takenon  date
+);
+
+insert into answers_master values (1,1001,sysdate);
+insert into answers_master values(2,1001,sysdate);
+insert into answers_master values(3,1002,sysdate);
+insert into answers_master values(4,1002,sysdate);
+
+
+Answers_details
+--------------
+suervyid  - FK
+questionid  - FK 
+answer
+
+
+create table answers_details
+(  surveyid number(5) references answers_master(surveyid)  on delete cascade,
+   questionid number(5) references questions(questionid),
+   answer   char(1),
+   primary key(surveyid,questionid)
+);
+
+insert into answers_details values(1,2000,1);
+insert into answers_details values(1,2001,1);
+
+
+insert into answers_details values(2,2000,1);
+insert into answers_details values(2,2001,2);
+
+insert into answers_details values(3,2002,2);
+insert into answers_details values(3,2003,1);
+
+
+insert into answers_details values(4,2002,1);
+insert into answers_details values(4,2003,3);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

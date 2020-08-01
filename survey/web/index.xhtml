@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core" >
+    <h:head>
+        <title>Select Topic</title>
+        <link rel="stylesheet" href="styles.css"/>
+    </h:head>
+    <h:body>
+       <div class="content">
+         <h:form id="selectTopicForm">
+            <div class="header">Survey</div>
+            <h2>Select Topic</h2>
+            Available Topics :
+            <h:selectOneMenu id="topic" value="#{topic.id}">
+                <f:selectItems value="#{topic.topics}" />
+            </h:selectOneMenu>
+
+            <p/>
+            <h:commandButton action="#{topic.process}" value="Submit">
+            </h:commandButton>
+            <p/>
+            <h3>Click on <b>Submit</b> button to start participating in the survey.</h3>
+            <p/>
+            <center>
+            <img src="topic.jpg" />
+            </center>
+        </h:form>
+        </div>
+    </h:body>
+</html>
+

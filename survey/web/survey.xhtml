@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Survey</title>
+        <link rel="stylesheet" href="styles.css"/>
+    </h:head>
+    <h:body>
+        <div class="content">
+            <h:form id="surveyForm">
+                <div class="header">Survey</div>
+                <p/>
+                <div class="qno">
+                    Question : <h:outputText value="#{topic.position + 1}"/>/ <h:outputText value="#{topic.questionCount}"/>
+                </div>
+                <p/>
+                <div class="question">
+                    <p/>
+                    <h:outputText value="#{topic.question.text}" />
+                    <p/>
+                </div>
+                <p/>
+                <div class="options">
+                    <h:selectOneRadio  id="options"  value="#{topic.question.answer}" layout="pageDirection" required="true"  requiredMessage="Please select an option"  >
+                        <f:selectItems value="#{topic.question.options}" />
+                    </h:selectOneRadio>
+                </div>
+                <p/>
+                <div class="buttons">
+                    <h:commandButton actionListener="#{topic.previous}" rendered="#{topic.position &gt; 0}" value="Previous">
+                        <f:ajax   execute="@form" render="@form" />
+                    </h:commandButton>
+                    &nbsp;
+                    <h:commandButton actionListener="#{topic.next}" rendered="#{topic.position &lt; topic.questionCount - 1}" value="Next">
+                        <f:ajax   execute="@form" render="@form" />
+                    </h:commandButton>
+                    &nbsp;
+                    <h:commandButton action="#{topic.finish}" rendered="#{topic.position + 1 == topic.questionCount}" value="Finish">
+                    </h:commandButton>
+                    &nbsp;
+                    <h:commandButton action="#{topic.cancel}" immediate="true" value="Cancel">
+                    </h:commandButton>
+                    <p/>
+                    <h:message for="options" />
+                </div>
+                <hr/>
+                <h3>
+                    <ul>
+                        <li>Click on NEXT button for next question</li>
+                        <li>Click on PREVIOUS button for previous question </li>
+                        <li>Click on FINISH to finish your survey </li>
+                        <li>Click on CANCEL button to cancel this survey and go to selection of topic </li>
+                    </ul>
+                </h3>
+                <div align="center">
+                    <img src="survey.jpg" height="200px" width="300px"/>
+                </div>
+            </h:form>
+        </div>
+    </h:body>
+
+</html>

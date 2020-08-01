@@ -1,0 +1,27 @@
+body {
+    font-family:verdana;
+    font-size:10pt;
+}
+.header {
+
+    font-family: Arial;
+    font-weight: bold;
+    font-size: 24pt;
+    color: #ffffff;
+    background-color: #003333;
+    letter-spacing: 4pt;
+    text-align: center;
+}
+
+th {
+    background-color: maroon ;
+    color:white;
+    font-weight: 700;
+}
+
+.menu {
+    font-weight:700;
+    vertical-align: top;
+    width:15%;
+    background-color: #cccccc;
+}

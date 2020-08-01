@@ -1,0 +1,58 @@
+body {
+    font-family:verdana;
+    font-size:12pt;
+    background-color: black;
+}
+.header {
+    background-color: #ff0000;
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 30px;
+    letter-spacing: 5pt;
+    font-family: Arial;
+}
+
+.qno  {
+    font-weight: bold;
+    font-size: 12px;
+    font-family: Verdana;
+}
+.question {
+    background-color: #cccccc;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: Verdana;
+    margin-top: 5pt;
+    margin-bottom: 5pt;
+    text-align:left;
+}
+
+.options {
+    text-align:left;
+    font-weight: bold;
+    font-size: 12px;
+    font-family: Verdana;
+}
+
+h3 {
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+h2 {
+     font-family: Arial;
+    font-size: 22px;
+    color:blue;
+    font-weight: 700;
+
+}
+
+.content {
+    background-color: white;
+    width: 600px;
+    height:800px;
+    overflow: visible;
+    margin-left: auto ;
+    margin-right: auto ;
+}
